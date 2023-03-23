@@ -154,8 +154,102 @@ Methods:
 
 ```js
 class Stack {
-  // your code goes here
+  constructor(capacity = Infinity) {
+    this.capacity = capacity;
+    this.store = {};
+  }
+  get length() {
+    return Object.keys(this.store).length;
+  }
+  add(newValue) {
+    if (Object.keys(this.store).length >= this.capacity) {
+      alert(`Stack is overflowing`);
+      return;
+    }
+    this.store[Object.keys(this.store).length] = newValue;
+    return Object.keys(this.store).length;
+  }
+  remove() {
+    let index = Object.keys(this.store).length - 1;
+    let elm = this.store[index];
+    delete this.store[index];
+
+    return elm;
+  }
+  peek() {
+    return this.store[Object.keys(this.store).length - 1];
+  }
+  printAll() {
+    Object.keys(this.store)
+      .sort((a, b) => a - b)
+      .forEach((key) => {
+        console.log(this.store[key]);
+      });
+  }
+  isEmpty() {
+    return Object.keys(this.store).length === 0;
+  }
 }
+
+// Test 1
+const stack = new Stack();
+
+stack.add(10);
+stack.add(12);
+stack.add(120);
+stack.add(1);
+stack.add(4);
+
+console.log(stack.remove()); // => 4
+console.log(stack.length); // => 4
+console.log(stack.remove()); // => 1
+console.log(stack.length); // => 3
+
+console.log(stack.peek()); // 120
+
+console.log(stack.isEmpty()); // false
+
+console.log(stack.remove()); // => 120
+
+console.log(stack.add(100)); // 3
+
+console.log(stack.peek()); // => 100
+
+console.log(stack.remove()); // => 100
+console.log(stack.remove()); // => 12
+console.log(stack.remove()); // => 10
+
+console.log(stack.isEmpty()); // true
+
+// Test 2
+
+const stack2 = new Stack(4);
+
+stack2.add(10);
+stack2.add(12);
+stack2.add(120);
+stack2.add(1);
+stack2.add(4); // alert Stack is overflowing
+
+console.log(stack2.remove()); // => 1
+console.log(stack2.length); // => 3
+console.log(stack2.remove()); // => 120
+console.log(stack2.length); // => 2
+
+console.log(stack2.peek()); // 12
+
+console.log(stack2.isEmpty()); // false
+
+console.log(stack2.remove()); // => 12
+
+console.log(stack2.add(100)); // 2
+
+console.log(stack2.peek()); // => 100
+
+console.log(stack2.remove()); // => 100
+console.log(stack2.remove()); // => 10
+
+console.log(stack2.isEmpty()); // true
 
 // Test 1
 
