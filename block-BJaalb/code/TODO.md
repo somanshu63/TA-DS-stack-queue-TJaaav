@@ -32,6 +32,39 @@ Methods:
 ```js
 class Stack {
   // your code goes here
+  constructor(capacity = infinity) {
+    this.storage = [];
+    this.capacity = capacity;
+  }
+
+  get length() {
+    return this.storage.length;
+  }
+  set length(para) {}
+
+  add(ele) {
+    if (this.storage.length === this.capacity) {
+      alert("stack is overflowing");
+    } else {
+      this.storage.push(ele);
+      return this.storage.length;
+    }
+  }
+  remove(ele) {
+    return this.storage.pop(ele);
+  }
+  peek() {
+    return this.storage[this.storage.length - 1];
+  }
+  printAll() {
+    let arr = [...this.storage];
+    arr.reverse().forEach((ele) => {
+      console.log(ele);
+    });
+  }
+  isEmpty() {
+    return this.storage.length === 0 ? true : false;
+  }
 }
 
 // Test 1
